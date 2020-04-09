@@ -25,7 +25,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = ['liamcox', 'SandraCoburn', 'lucasgreenwell', 'maryjwaters7', 'james-coulter'];
+const followersArray = ['SandraCoburn', 'msheets1983', 'maryjwaters7', 'james-coulter', 'liamcox'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -77,6 +77,7 @@ function cardMaker({login, avatar_url, html_url, name, location, bio, followers,
   info.setAttribute('class', 'card-info');
   ghName.setAttribute('class', 'name');
   user.setAttribute('class', 'username');
+  profile.setAttribute('class', 'profile');
   address.href = html_url;
   // STRETCH
   contentContainer.setAttribute('class', 'contentContainer');
@@ -86,6 +87,7 @@ function cardMaker({login, avatar_url, html_url, name, location, bio, followers,
   ghName.textContent = `${name}`;
   user.textContent = `${login}`;
   ghLocation.textContent = `${location}`;
+  profile.textContent = 'Profile: ';
   address.textContent = `${html_url}`;
   ghFollowers.textContent = `Followers: ${followers}`;
   ghFollowing.textContent = `Following: ${following}`;
