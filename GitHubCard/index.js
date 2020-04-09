@@ -67,13 +67,21 @@ function cardMaker({login, avatar_url, html_url, name, location, bio, followers,
   const ghFollowers = make('p');
   const ghFollowing = make('p');
   const ghBio = make('p');
+  // STRETCH
+  const contentContainer = make('div');
+  const calendar = make('img');
 
   card.setAttribute('class', 'card');
+  img.setAttribute('class', 'profile-pic');
   img.src = avatar_url;
   info.setAttribute('class', 'card-info');
   ghName.setAttribute('class', 'name');
   user.setAttribute('class', 'username');
   address.href = html_url;
+  // STRETCH
+  contentContainer.setAttribute('class', 'contentContainer');
+  calendar.setAttribute('alt', `${name}'s 2020 calendar`);
+  calendar.src = `http://ghchart.rshah.org/${login}`;
 
   ghName.textContent = `${name}`;
   user.textContent = `${login}`;
@@ -83,8 +91,10 @@ function cardMaker({login, avatar_url, html_url, name, location, bio, followers,
   ghFollowing.textContent = `Following: ${following}`;
   ghBio.textContent = `${bio}`;
 
-  card.appendChild(img);
-  card.appendChild(info);
+  // STRETCH
+  card.appendChild(contentContainer);
+  contentContainer.appendChild(img);
+  contentContainer.appendChild(info);
   info.appendChild(ghName);
   info.appendChild(user);
   info.appendChild(ghLocation);
@@ -93,6 +103,7 @@ function cardMaker({login, avatar_url, html_url, name, location, bio, followers,
   info.appendChild(ghFollowers);
   info.appendChild(ghFollowing);
   info.appendChild(ghBio);
+  card.appendChild(calendar);
 
   return card;
 }
@@ -112,11 +123,6 @@ axios.get('https://api.github.com/users/jonush')
       const profileData = response.data;
       //console.log('User Info', profileData);
       cards.appendChild(cardMaker(profileData));
-
-      // profileData.forEach(item => {
-      //   const card = cardMaker({login, avatar_url, html_url, name, location, bio, followers, following});
-      //   cards.appendChild(card);
-      // })
     }
   )
   .catch (
